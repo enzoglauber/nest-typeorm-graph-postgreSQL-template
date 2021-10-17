@@ -5,7 +5,8 @@ import * as uuid from 'uuid';
 
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
-import { User } from './user.entity';
+import User from './user.entity';
+
 
 @Injectable()
 export class UserService {
@@ -18,14 +19,14 @@ export class UserService {
     const {password, ...rest} = data;
     const user = new User();
 
-    user._id = uuid.v4();
+    user.id = uuid.v4();
     user.password = password;
 
     return this.userRepository.save({...user, ...rest});
   }
 
-  async getUserById(_id: string): Promise<User> {
-    const user = await this.userRepository.findOne(_id);
+  async getUserById(id: string): Promise<User> {
+    const user = await this.userRepository.findOne(id);
     if (!user) {
       throw new NotFoundException('User not found');
     }
@@ -37,12 +38,12 @@ export class UserService {
   }
 
   async updateUser(data: UpdateUserInput): Promise<User> {
-    const user = await this.getUserById(data._id);
+    const user = await this.getUserById(data.id);
     return this.userRepository.save({ ...user, ...data });
   }
 
-  async deleteUser(_id: string): Promise<void> {
-    const user = await this.getUserById(_id);
+  async deleteUser(id: string): Promise<void> {
+    const user = await this.getUserById(id);
     const userDeleted = await this.userRepository.delete(user);
     if (!userDeleted) {
       throw new InternalServerErrorException();

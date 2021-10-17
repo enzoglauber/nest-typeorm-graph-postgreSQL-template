@@ -1,7 +1,9 @@
-import { CreateUserInput } from 'src/user/dto/create-user.input';
-import { UpdateUserInput } from 'src/user/dto/update-user.input';
+import { CreateUserInput } from 'src/app/user/dto/create-user.input';
+import { UpdateUserInput } from 'src/app/user/dto/update-user.input';
+import User from 'src/app/user/user.entity';
 
-import { User } from './../../user/user.entity';
+
+
 
 export const mockAddAccountParams: CreateUserInput = {
   name: 'Test User',
@@ -10,12 +12,16 @@ export const mockAddAccountParams: CreateUserInput = {
 };
 
 export const mockUpdateUserParams: UpdateUserInput = {
-  _id: '1',
+  id: '1',
   email: 'email-updated@email.com',
 };
 
 export const mockUserModel: User = {
-  _id: '1',
+  id: '1',
+  active: true,
+  archived: false,
+  createdAt: new Date(),
+  updatedAt: new Date(),
   ...mockAddAccountParams,
 };
 
@@ -27,15 +33,24 @@ export const mockUpdatedUserModel: User = {
 export const mockUserArrayModel: User[] = [
   mockUserModel,
   {
-    _id: '2',
+    id: '2',
     name: 'Test User 2',
     email: 'email2@email.com',
-    password: '123456'
+    password: '123456',
+    active: true,
+    archived: false,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+
   },
   {
-    _id: '3',
+    id: '3',
     name: 'Test User 3',
     email: 'email3@email.com',
-    password: '123456'
+    password: '123456',
+    active: true,
+    archived: false,
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
 ];

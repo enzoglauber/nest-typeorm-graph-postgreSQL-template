@@ -1,15 +1,17 @@
-version: '3'
+version: '3.7'
 
 services:
-  db:
-    image: mongo
-    container_name: db_mongo
-    volumes:
-      - mongodata:/data/db
-    ports:
-      - "27017:27017"
+  postgres:
+    container_name: nest_db_postgre
+    image: postgres:9.6-alpine
     environment:
-      MONGO_INITDB_DATABASE: "root"
-      
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_DB: ${DB_NAME}
+      PG_DATA: /var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    volumes:
+      - api_db_data:/var/lib/postgresql/data
 volumes:
-  mongodata: 
+  api_db_data:

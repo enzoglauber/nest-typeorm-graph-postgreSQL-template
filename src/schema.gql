@@ -2,33 +2,32 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type User {
-  _id: String!
-  name: String!
+input CreateUserInput {
   email: String!
+  name: String!
   password: String!
-}
-
-type Query {
-  user(_id: String!): User!
-  users: [User!]!
 }
 
 type Mutation {
   createUser(data: CreateUserInput!): User!
-  updateUser(data: UpdateUserInput!, _id: String!): User!
-  deleteUser(_id: String!): Boolean!
+  deleteUser(id: String!): Boolean!
+  updateUser(data: UpdateUserInput!, id: String!): User!
 }
 
-input CreateUserInput {
-  name: String!
-  email: String!
-  password: String!
+type Query {
+  user(id: String!): User!
+  users: [User!]!
 }
 
 input UpdateUserInput {
-  _id: String
-  name: String
   email: String
+  id: String
+  name: String
   password: String
+}
+
+type User {
+  email: String!
+  name: String!
+  password: String!
 }

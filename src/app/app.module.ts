@@ -1,16 +1,18 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import GraphQL from 'src/config/graphql.config';
+import typeormConfig from 'src/config/typeorm.config';
 
-import { UserModule } from '../user/user.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import GraphQL from './graphql.config';
-import TypeOrm from './typeorm.config';
+import { UserModule } from './user/user.module';
+
 
 @Module({
   imports: [
     GraphQL,
-    TypeOrm,
-    UserModule,
+    TypeOrmModule.forRoot(typeormConfig),
+    UserModule
   ],
   controllers: [AppController],
   providers: [AppService],

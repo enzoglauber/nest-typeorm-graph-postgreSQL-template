@@ -42,14 +42,16 @@ touch src/user/user.entity.ts
 touch src/user/user.input.ts
 ```
 
-## Mongo
+## PostgreSQL
 
 ```bash
 # up
 docker-compose up -d
 # exec
-docker-compose exec db mongo
-use base
+docker compose run postgres bash
+psql --host=postgres --username=admin --dbname=root
+psql --host=localhost --username=admin --dbname=root
+
 ```
 
 

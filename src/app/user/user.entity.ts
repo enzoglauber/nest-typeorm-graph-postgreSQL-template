@@ -1,13 +1,11 @@
 import { ObjectType } from '@nestjs/graphql';
-import { hashPasswordTransform } from 'src/common/helpers/cripto';
-import { Column, Entity, ObjectIdColumn } from 'typeorm';
+import { BaseEntity } from 'src/common/entity/base.entity';
+import { hashPasswordTransform } from 'src/common/util/cripto';
+import { Column, Entity } from 'typeorm';
 
 @Entity()
 @ObjectType()
-export class User {
-  @ObjectIdColumn()
-  _id: string;
-
+class User extends BaseEntity {
   @Column()
   name: string;
 
@@ -19,3 +17,5 @@ export class User {
   })
   password: string;
 }
+
+export default User;
