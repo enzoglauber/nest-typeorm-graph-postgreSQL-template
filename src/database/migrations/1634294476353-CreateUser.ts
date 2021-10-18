@@ -1,17 +1,11 @@
+import BaseMigration from 'src/common/base/base.migration';
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateUser1634294476353 implements MigrationInterface {
-
+  private static readonly migration = new BaseMigration();
   private static readonly table = new Table({
     name: 'user',
     columns: [
-      {
-        name: "id",
-        type: "uuid",
-        isPrimary: true,
-        generationStrategy: "uuid",
-        default: "uuid_generate_v4()"
-      },
       {
         name: "name",
         type: "varchar(200)"
@@ -24,14 +18,7 @@ export class CreateUser1634294476353 implements MigrationInterface {
         name: "password",
         type: "varchar(300)"
       },
-      {
-        name: "createdAt",
-        type: "timestamptz"
-      },
-      {
-        name: "updatedAt",
-        type: "timestamptz"
-      }
+      ...CreateUser1634294476353.migration.all
     ],
     // foreignKeys: [
     //   {

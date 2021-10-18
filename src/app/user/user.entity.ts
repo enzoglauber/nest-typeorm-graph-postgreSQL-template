@@ -1,5 +1,5 @@
 import { ObjectType } from '@nestjs/graphql';
-import { BaseEntity } from 'src/common/entity/base.entity';
+import { BaseEntity } from 'src/common/base/base.entity';
 import { hashPasswordTransform } from 'src/common/util/cripto';
 import { Column, Entity } from 'typeorm';
 
@@ -13,7 +13,7 @@ class User extends BaseEntity {
   email: string;
 
   @Column({
-    transformer: hashPasswordTransform // só funciona em RDBMS – relational database management systems
+    transformer: hashPasswordTransform // só funciona em RDBMS
   })
   password: string;
 }
