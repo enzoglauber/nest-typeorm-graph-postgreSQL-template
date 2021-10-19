@@ -16,7 +16,7 @@ scalar DateTime
 type Mutation {
   createUser(data: CreateUserInput!): User!
   deleteUser(id: String!): Boolean!
-  updateUser(data: UpdateUserInput!, id: String!): User!
+  updateUser(data: UpdateUserInput!): User!
 }
 
 type Query {

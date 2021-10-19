@@ -26,10 +26,9 @@ export class UserResolver {
 
   @Mutation(() => User)
   async updateUser(
-    @Args('id') id: string,
     @Args('data') data: UpdateUserInput,
   ): Promise<User> {
-    return this.userService.updateUser({ id, ...data });
+    return this.userService.updateUser(data);
   }
 
   @Mutation(() => Boolean)

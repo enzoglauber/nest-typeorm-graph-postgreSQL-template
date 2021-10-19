@@ -1,7 +1,6 @@
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MongoRepository } from 'typeorm';
-import * as uuid from 'uuid';
 
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
@@ -16,13 +15,7 @@ export class UserService {
   ) {}
 
   async createUser(data: CreateUserInput): Promise<User> {
-    const {password, ...rest} = data;
-    const user = new User();
-
-    user.id = uuid.v4();
-    user.password = password;
-
-    return this.userRepository.save({...user, ...rest});
+    return this.userRepository.save(data);
   }
 
   async getUserById(id: string): Promise<User> {
