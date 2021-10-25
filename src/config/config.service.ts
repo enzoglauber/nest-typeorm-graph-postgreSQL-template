@@ -20,13 +20,9 @@ class ConfigService {
       database: this.getValue('DB_NAME'),
       entities: [join(__dirname, '..', 'app', '**', '*.entity.{ts,js}')],
       migrationsTableName: 'migration',
-      migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
-      // migrations: [
-      //   "./src/app/database/migrations/**.ts"
-      // ],
-      // migrations: [join(__dirname, 'migrations', 'migrations', 'migrations', '*.ts')],
+      migrations: [join(__dirname, '..', 'database', 'migrations', '**', '*{.ts,.js}')],
       cli: {
-        migrationsDir: './src/app/database/migrations',
+        migrationsDir: './src/database/migrations',
       },
       synchronize: this.getValue('DB_SYNC') == 'true',
       // ssl: this.isProduction(),

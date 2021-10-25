@@ -1,13 +1,18 @@
+import { Inject } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 
+import { AddressService } from '../address/address.service';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
-import User from './user.entity';
+import { User } from './user.entity';
 import { UserService } from './user.service';
 
-@Resolver('User')
+@Resolver(() => User)
 export class UserResolver {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    @Inject(UserService) private userService: UserService,
+    @Inject(AddressService) private addressService: AddressService
+  ) {}
 
   @Mutation(() => User)
   async createUser(@Args('data') data: CreateUserInput): Promise<User> {
@@ -36,4 +41,13 @@ export class UserResolver {
     await this.userService.deleteUser(id);
     return true;
   }
+
+  // @ResolveField(() => User)
+  // async address(@Parent() user) {
+  //   console.log(user, user);
+
+  //   // return this.userService.findByAddress(id);
+  //   await this.userService.find({ relations: ["address"] });
+  // }
+
 }

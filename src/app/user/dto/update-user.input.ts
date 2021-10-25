@@ -1,14 +1,10 @@
-import { InputType } from '@nestjs/graphql';
-import { IsEmail, IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
+import { Field, InputType } from '@nestjs/graphql';
+import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { CreateAddressInput } from 'src/app/address/dto/create-address.input';
 import { BaseInput } from 'src/common/base/base.input';
 
 @InputType()
 export class UpdateUserInput extends BaseInput {
-  @IsString()
-  @IsOptional()
-  @IsUUID()
-  id?: string;
-
   @IsOptional()
   @IsString()
   @IsNotEmpty({ message: 'Invalid characters' })
@@ -21,5 +17,8 @@ export class UpdateUserInput extends BaseInput {
 
   @IsString()
   @IsNotEmpty({ message: 'Password is required' })
-  password?: string;
+  password: string;
+
+  @Field({ nullable: true })
+  address?: CreateAddressInput;
 }

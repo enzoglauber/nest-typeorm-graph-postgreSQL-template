@@ -2,7 +2,10 @@ import { TableColumnOptions } from 'typeorm/schema-builder/options/TableColumnOp
 
 class BaseMigration {
   get uuid(): TableColumnOptions {
-    return this.id({})
+    return this.id({
+      generationStrategy: "uuid",
+      default: "uuid_generate_v4()"
+    })
   }
 
   get createdAt(): TableColumnOptions {
@@ -36,8 +39,6 @@ class BaseMigration {
       name: "id",
       type: "uuid",
       isPrimary: true,
-      generationStrategy: "uuid",
-      default: "uuid_generate_v4()",
       ...params
     }
   }

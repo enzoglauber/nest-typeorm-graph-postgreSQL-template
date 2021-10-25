@@ -1,21 +1,25 @@
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { MongoRepository } from 'typeorm';
+import { Repository } from 'typeorm';
 
+import { AddressService } from '../address/address.service';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
-import User from './user.entity';
+import { User } from './user.entity';
 
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
-    private readonly userRepository: MongoRepository<User>,
+    private readonly userRepository: Repository<User>,
+    private readonly addressService: AddressService
   ) {}
 
-  async createUser(data: CreateUserInput): Promise<User> {
-    return this.userRepository.save(data);
+  async createUser(user: CreateUserInput): Promise<User> {
+    const address = await this.addressService.create(user.address);
+    user.address = address;
+    return this.userRepository.save(user);
   }
 
   async getUserById(id: string): Promise<User> {
@@ -41,5 +45,20 @@ export class UserService {
     if (!userDeleted) {
       throw new InternalServerErrorException();
     }
+  }
+
+  async findByAddress(id: string): Promise<User>{
+    return this.userRepository.findOne({
+      address: {id}
+    });
+
+    // return this.userRepository
+    //   .createQueryBuilder("user")
+    //   .where("addressid = :id", { id })
+    //   .getOne();
+  }
+
+  async find(data: any): Promise<User>{
+    return this.userRepository.findOne(data);
   }
 }

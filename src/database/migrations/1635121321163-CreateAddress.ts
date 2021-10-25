@@ -2,24 +2,24 @@ import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 import BaseMigration from '../../common/base/base.migration';
 
-export class CreateUser1634294476353 implements MigrationInterface {
+export class CreateAddress1635121321163 implements MigrationInterface {
   private static readonly migration = new BaseMigration();
   private static readonly table = new Table({
-    name: 'user',
+    name: 'address',
     columns: [
       {
-        name: "name",
-        type: "varchar(200)"
+        name: "street",
+        type: "varchar(300)"
       },
       {
-        name: "email",
+        name: "city",
         type: "varchar(100)"
       },
       {
-        name: "password",
-        type: "varchar(300)"
+        name: "country",
+        type: "varchar(100)"
       },
-      ...CreateUser1634294476353.migration.all
+      ...CreateAddress1635121321163.migration.all
     ],
     // foreignKeys: [
     //   {
@@ -34,11 +34,10 @@ export class CreateUser1634294476353 implements MigrationInterface {
   });
 
   public async up(queryRunner: QueryRunner): Promise<any> {
-    await queryRunner.createTable(CreateUser1634294476353.table);
+    await queryRunner.createTable(CreateAddress1635121321163.table);
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
-    await queryRunner.dropTable(CreateUser1634294476353.table);
+    await queryRunner.dropTable(CreateAddress1635121321163.table);
   }
-
 }

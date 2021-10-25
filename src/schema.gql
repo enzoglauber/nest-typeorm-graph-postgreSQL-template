@@ -2,7 +2,26 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Address {
+  active: Boolean!
+  archived: Boolean!
+  city: String!
+  country: String!
+  createdAt: DateTime!
+  id: String!
+  street: String!
+  updatedAt: DateTime!
+  user: User
+}
+
+input CreateAddressInput {
+  city: String!
+  country: String!
+  street: String!
+}
+
 input CreateUserInput {
+  address: CreateAddressInput
   email: String!
   name: String!
   password: String!
@@ -14,27 +33,40 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Mutation {
+  createAddress(data: CreateAddressInput!): Address!
   createUser(data: CreateUserInput!): User!
   deleteUser(id: String!): Boolean!
+  removeAddress(id: String!): Boolean!
+  updateAddress(data: UpdateAddressInput!): Address!
   updateUser(data: UpdateUserInput!): User!
 }
 
 type Query {
+  address(id: String!): Address!
+  addresses: [Address!]!
   user(id: String!): User!
   users: [User!]!
 }
 
+input UpdateAddressInput {
+  city: String
+  country: String
+  street: String
+}
+
 input UpdateUserInput {
   active: Boolean
+  address: CreateAddressInput
   archived: Boolean
   email: String
-  id: String
+  id: String!
   name: String
-  password: String
+  password: String!
 }
 
 type User {
   active: Boolean!
+  address: Address
   archived: Boolean!
   createdAt: DateTime!
   email: String!

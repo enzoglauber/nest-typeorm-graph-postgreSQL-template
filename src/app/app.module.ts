@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import GraphQL from 'src/config/graphql.config';
 import typeormConfig from 'src/config/typeorm.config';
 
+import { AddressModule } from './address/address.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
@@ -12,7 +13,8 @@ import { UserModule } from './user/user.module';
   imports: [
     GraphQL,
     TypeOrmModule.forRoot(typeormConfig),
-    UserModule
+    UserModule,
+    AddressModule
   ],
   controllers: [AppController],
   providers: [AppService],
