@@ -1,10 +1,9 @@
 import { InputType } from '@nestjs/graphql';
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
-
-import { BaseEntity } from '../../../common/base/base.entity';
+import { BaseInput } from 'src/common/base/base.input';
 
 @InputType()
-export class UpdateAddressInput extends BaseEntity {
+export class UpdateAddressInput extends BaseInput {
   @IsOptional()
   @IsString()
   @IsNotEmpty({ message: 'Street is required' })

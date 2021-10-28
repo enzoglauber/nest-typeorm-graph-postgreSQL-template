@@ -35,8 +35,16 @@ export class UserService {
   }
 
   async updateUser(data: UpdateUserInput): Promise<User> {
+    console.log('data', data);
     const user = await this.getUserById(data.id);
+    const address = await this.addressService.update(data.address);
+    user.address = address;
     return this.userRepository.save({ ...user, ...data });
+  }
+
+  async clear(): Promise<true> {
+    await this.userRepository.clear()
+    return true;
   }
 
   async deleteUser(id: string): Promise<void> {

@@ -42,12 +42,8 @@ export class UserResolver {
     return true;
   }
 
-  // @ResolveField(() => User)
-  // async address(@Parent() user) {
-  //   console.log(user, user);
-
-  //   // return this.userService.findByAddress(id);
-  //   await this.userService.find({ relations: ["address"] });
-  // }
-
+  @Mutation(() => Boolean)
+  async truncateUser(): Promise<true> {
+    return this.userService.clear();
+  }
 }

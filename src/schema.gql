@@ -37,6 +37,8 @@ type Mutation {
   createUser(data: CreateUserInput!): User!
   deleteUser(id: String!): Boolean!
   removeAddress(id: String!): Boolean!
+  truncateAddress: Boolean!
+  truncateUser: Boolean!
   updateAddress(data: UpdateAddressInput!): Address!
   updateUser(data: UpdateUserInput!): User!
 }
@@ -49,14 +51,17 @@ type Query {
 }
 
 input UpdateAddressInput {
+  active: Boolean
+  archived: Boolean
   city: String
   country: String
+  id: String!
   street: String
 }
 
 input UpdateUserInput {
   active: Boolean
-  address: CreateAddressInput
+  address: UpdateAddressInput
   archived: Boolean
   email: String
   id: String!

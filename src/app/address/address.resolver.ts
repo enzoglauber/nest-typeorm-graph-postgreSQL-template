@@ -48,4 +48,10 @@ export class AddressResolver {
     const { id } = address;
     return this.userService.findByAddress(id);
   }
+
+
+  @Mutation(() => Boolean)
+  async truncateAddress(): Promise<true> {
+    return this.addressService.clear();
+  }
 }

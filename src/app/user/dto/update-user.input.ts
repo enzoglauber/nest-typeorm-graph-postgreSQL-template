@@ -1,7 +1,8 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { CreateAddressInput } from 'src/app/address/dto/create-address.input';
 import { BaseInput } from 'src/common/base/base.input';
+
+import { UpdateAddressInput } from '../../address/dto/update-address.input';
 
 @InputType()
 export class UpdateUserInput extends BaseInput {
@@ -20,5 +21,5 @@ export class UpdateUserInput extends BaseInput {
   password: string;
 
   @Field({ nullable: true })
-  address?: CreateAddressInput;
+  address?: UpdateAddressInput;
 }

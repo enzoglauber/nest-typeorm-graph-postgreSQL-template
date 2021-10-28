@@ -11,8 +11,7 @@ import { UpdateAddressInput } from './dto/update-address.input';
 export class AddressService {
    constructor(
     @InjectRepository(Address)
-    private readonly addressRepository: Repository<Address>,
-    // private readonly userService: UserService
+    private readonly addressRepository: Repository<Address>
   ) {}
 
   async create(data: CreateAddressInput | UpdateUserInput): Promise<Address> {
@@ -44,10 +43,8 @@ export class AddressService {
     }
   }
 
-  // async findAllWithUsers(): Promise<Address[]> {
-  //   return this.addressRepository.find({ relations: ['user'] });
-  // }
-  // async find(data: any): Promise<User>{
-  //   return this.userService.find(data);
-  // }
+  async clear(): Promise<true> {
+    await this.addressRepository.clear()
+    return true;
+  }
 }

@@ -30,6 +30,5 @@ export class User extends BaseEntity {
     cascade: true // Graças a isso, podemos salvar um endereço enquanto salvamos um usuário.
   })
   @JoinColumn()
-  // @JoinColumn()
   public address?: Address;
 }
