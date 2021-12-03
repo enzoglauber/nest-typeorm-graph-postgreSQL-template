@@ -47,6 +47,7 @@ type Query {
   address(id: String!): Address!
   addresses: [Address!]!
   user(id: String!): User!
+  userByEmail(email: String!): User!
   users: [User!]!
 }
 
@@ -74,9 +75,8 @@ type User {
   address: Address
   archived: Boolean!
   createdAt: DateTime!
-  email: String!
+  email: String
   id: String!
   name: String!
-  password: String!
   updatedAt: DateTime!
 }

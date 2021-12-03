@@ -1,9 +1,8 @@
-import { Field, ObjectType } from '@nestjs/graphql';
-import { Exclude } from 'class-transformer';
+import { BaseEntity } from '@common/base/base.entity';
+import { hashPasswordTransform } from '@common/util/cripto';
+import { Field, HideField, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 
-import { BaseEntity } from '../../common/base/base.entity';
-import { hashPasswordTransform } from '../../common/util/cripto';
 import { Address } from '../address/address.entity';
 
 @ObjectType()
@@ -15,14 +14,13 @@ export class User extends BaseEntity {
 
   @Field()
   @Column()
-  public email: string;
+  public email?: string;
 
-  @Exclude()
-  @Field()
+  @HideField()
   @Column({
     transformer: hashPasswordTransform // só funciona em RDBMS
   })
-  public password: string;
+  public password?: string;
 
   @Field(type =>  Address, { nullable: true })
   @OneToOne(() => Address, (address: Address) => address.user, {

@@ -24,6 +24,12 @@ export class UserResolver {
     return this.userService.getUserById(id);
   }
 
+  @Query(() => User)
+  async userByEmail(@Args('email') email: string): Promise<User> {
+    return this.userService.getUserByEmail(email);
+  }
+
+
   @Query(() => [User])
   async users(): Promise<User[]> {
     return this.userService.findAllUsers();
