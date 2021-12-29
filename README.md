@@ -27,12 +27,16 @@
 npm i --save @nestjs/graphql apollo-server-express graphql-tools graphql
 # or
 yarn add @nestjs/graphql apollo-server-express graphql-tools graphql
+
+# JWT
+npm install --save @nestjs/jwt passport-jwt
+npm install --save-dev @types/passport-jwt
 ```
 
 ## Scafolds
 
 ```bash
-# nest
+# user
 nest g mo user
 nest g r user
 nest g s user
@@ -40,6 +44,15 @@ nest g s user
 touch src/user/user.graphql
 touch src/user/user.entity.ts
 touch src/user/user.input.ts
+
+# auth
+nest g mo auth
+nest g r auth
+nest g s auth
+# touch
+touch src/auth/auth.graphql
+touch src/auth/auth.entity.ts
+touch src/auth/auth.input.ts
 ```
 
 ## PostgreSQL

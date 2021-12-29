@@ -14,6 +14,16 @@ type Address {
   user: User
 }
 
+input AuthInput {
+  email: String!
+  password: String!
+}
+
+type AuthType {
+  token: String!
+  user: User!
+}
+
 input CreateAddressInput {
   city: String!
   country: String!
@@ -37,6 +47,7 @@ type Mutation {
   createUser(data: CreateUserInput!): User!
   deleteUser(id: String!): Boolean!
   removeAddress(id: String!): Boolean!
+  sign(auth: AuthInput!): AuthType!
   truncateAddress: Boolean!
   truncateUser: Boolean!
   updateAddress(data: UpdateAddressInput!): Address!
