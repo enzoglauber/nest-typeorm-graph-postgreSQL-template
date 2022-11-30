@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-import BaseMigration from '../../common/base/base.migration';
+import BaseMigration from '@common/base/base.migration';
 
 export class CreateAddress1635121321163 implements MigrationInterface {
   private static readonly migration = new BaseMigration();

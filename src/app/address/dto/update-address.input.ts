@@ -1,6 +1,6 @@
+import { BaseInput } from '@common/base/base.input';
 import { InputType } from '@nestjs/graphql';
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { BaseInput } from 'src/common/base/base.input';
 
 @InputType()
 export class UpdateAddressInput extends BaseInput {

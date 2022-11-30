@@ -24,7 +24,8 @@ class ConfigService {
       cli: {
         migrationsDir: './src/database/migrations',
       },
-      synchronize: this.getValue('DB_SYNC') == 'true',
+      synchronize: false,
+      migrationsRun: true
       // ssl: this.isProduction(),
     };
   }

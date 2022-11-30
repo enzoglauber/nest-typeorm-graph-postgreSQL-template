@@ -23,6 +23,9 @@
 ## Config
 
 ```bash
+# CLI
+npm install -g @nestjs/cli
+"typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
 # GraphQL
 npm i --save @nestjs/graphql apollo-server-express graphql-tools graphql
 # or
@@ -58,10 +61,13 @@ touch src/auth/auth.input.ts
 ## PostgreSQL
 
 ```bash
+# start
+sudo service docker start
 # up
 docker-compose up -d
 # exec
-docker compose run postgres bash
+sh start-db.sh
+docker-compose run postgres bash
 psql --host=postgres --username=admin --dbname=root
 psql --host=localhost --username=admin --dbname=root
 

@@ -1,6 +1,6 @@
+import { BaseInput } from '@common/base/base.input';
 import { Field, InputType } from '@nestjs/graphql';
 import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { BaseInput } from 'src/common/base/base.input';
 
 import { UpdateAddressInput } from '../../address/dto/update-address.input';
 

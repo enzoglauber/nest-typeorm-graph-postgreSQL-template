@@ -7,8 +7,8 @@ import {
   mockUpdatedUserModel,
   mockUpdateUserParams,
   mockUserArrayModel,
-  mockUserModel,
-} from './../common/test/TestUtil';
+  mockUserModel
+} from '@common/test/TestUtil';
 import { User } from './user.entity';
 import { UserService } from './user.service';
 
