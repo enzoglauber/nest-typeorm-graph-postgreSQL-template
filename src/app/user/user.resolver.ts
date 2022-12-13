@@ -11,7 +11,7 @@ import { UserService } from './user.service';
 export class UserResolver {
   constructor(
     @Inject(UserService) private userService: UserService,
-    @Inject(AddressService) private addressService: AddressService
+    @Inject(AddressService) private addressService: AddressService,
   ) {}
 
   @Mutation(() => User)
@@ -29,16 +29,13 @@ export class UserResolver {
     return this.userService.getUserByEmail(email);
   }
 
-
   @Query(() => [User])
   async users(): Promise<User[]> {
     return this.userService.findAllUsers();
   }
 
   @Mutation(() => User)
-  async updateUser(
-    @Args('data') data: UpdateUserInput,
-  ): Promise<User> {
+  async updateUser(@Args('data') data: UpdateUserInput): Promise<User> {
     return this.userService.updateUser(data);
   }
 

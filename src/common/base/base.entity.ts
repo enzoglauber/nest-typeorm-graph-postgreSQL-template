@@ -1,8 +1,14 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Column, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  BaseEntity as Base,
+  Column,
+  CreateDateColumn,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
+} from 'typeorm';
 
 @ObjectType({ isAbstract: true })
-export class BaseEntity {
+export class BaseEntity extends Base {
   @Field()
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -12,20 +18,18 @@ export class BaseEntity {
   active: boolean;
 
   @Field()
-  @Column({ type: 'boolean', default: false })
+  @Column({ type: 'boolean', nullable: true, default: false })
   archived: boolean;
 
   @Field()
-  @Column()
-  @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
+  @CreateDateColumn({ type: 'timestamptz', default: 'NOW()' })
   createdAt: Date;
 
   // @Column({ type: 'varchar', length: 300 })
   // createdBy: string;
 
   @Field()
-  @Column()
-  @UpdateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
+  @UpdateDateColumn({ type: 'timestamptz', default: 'NOW()' })
   updatedAt: Date;
 
   // @Column({ type: 'varchar', length: 300 })

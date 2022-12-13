@@ -9,19 +9,19 @@ class BaseMigration {
   }
 
   get createdAt(): TableColumnOptions {
-    return this.date({ name: "createdAt" })
+    return this.date({ name: "createdAt", default: "NOW()" })
   }
 
   get updatedAt(): TableColumnOptions {
-    return this.date({ name: "updatedAt" })
+    return this.date({ name: "updatedAt", default: "NOW()" })
   }
 
   get active(): TableColumnOptions {
-    return this.bool({name: 'active'})
+    return this.bool({name: 'active', default: "true"})
   }
 
   get archived(): TableColumnOptions {
-    return this.bool({name: 'archived'})
+    return this.bool({name: 'archived', default: "false"})
   }
 
   get all(): TableColumnOptions[] {

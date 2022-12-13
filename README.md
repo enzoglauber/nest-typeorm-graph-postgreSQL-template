@@ -56,6 +56,15 @@ nest g s auth
 touch src/auth/auth.graphql
 touch src/auth/auth.entity.ts
 touch src/auth/auth.input.ts
+
+# place
+nest g mo app/place
+nest g r app/place
+nest g s app/place
+# touch
+touch src/auth/place.entity.ts
+touch src/dto/create-place.input.ts
+touch src/dto/update-place.input.ts
 ```
 
 ## PostgreSQL
@@ -123,6 +132,7 @@ npm run migrate:run
 # create migrate
 npm run migrate:create CreateUser
 npm run migrate:create CreateAddress
+npm run migrate:create CreatePlace
 ```
 
 ## Support

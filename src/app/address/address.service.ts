@@ -9,7 +9,7 @@ import { UpdateAddressInput } from './dto/update-address.input';
 
 @Injectable()
 export class AddressService {
-   constructor(
+  constructor(
     @InjectRepository(Address)
     private readonly addressRepository: Repository<Address>
   ) {}

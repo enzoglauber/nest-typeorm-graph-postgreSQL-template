@@ -23,10 +23,11 @@ export class User extends BaseEntity {
   public password?: string;
 
   @Field(type =>  Address, { nullable: true })
-  @OneToOne(() => Address, (address: Address) => address.user, {
+  @OneToOne(() => Address, (address: Address) => address?.user, {
+    nullable: true,
     eager: true, // Força que nossas entidades relacionadas sejam sempre incluídas
     cascade: true // Graças a isso, podemos salvar um endereço enquanto salvamos um usuário.
   })
   @JoinColumn()
-  public address?: Address;
+  public address?: Address | null;
 }

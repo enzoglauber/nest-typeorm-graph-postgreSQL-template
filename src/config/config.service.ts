@@ -5,7 +5,7 @@ require('dotenv').config();
 
 class ConfigService {
 
-  constructor(private env: { [k: string]: string | undefined }) {}
+  constructor(private env: { [k: string]: string | undefined }) { }
 
   private getValue(key: string): string {
     return this.env[key] || '';
@@ -24,8 +24,7 @@ class ConfigService {
       cli: {
         migrationsDir: './src/database/migrations',
       },
-      synchronize: false,
-      migrationsRun: true
+      // synchronize: true,
       // ssl: this.isProduction(),
     };
   }

@@ -17,8 +17,10 @@ export class UserService {
   ) {}
 
   async createUser(user: CreateUserInput): Promise<User> {
-    const address = await this.addressService.create(user.address);
-    user.address = address;
+    if (user.address) {      
+      const address = await this.addressService.create(user.address);
+      user.address = address;
+    }
     return this.userRepository.save(user);
   }
 

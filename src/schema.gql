@@ -30,6 +30,12 @@ input CreateAddressInput {
   street: String!
 }
 
+input CreatePlaceInput {
+  lat: String!
+  lng: String!
+  name: String!
+}
+
 input CreateUserInput {
   address: CreateAddressInput
   email: String!
@@ -43,10 +49,14 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Mutation {
+  clearPlace: Boolean!
   createAddress(data: CreateAddressInput!): Address!
   createUser(data: CreateUserInput!): User!
   deleteUser(id: String!): Boolean!
+  insertPlace(data: CreatePlaceInput!): Place!
   removeAddress(id: String!): Boolean!
+  removePlace(id: String!): Boolean!
+  seedPlace: [Place!]!
   sign(auth: AuthInput!): AuthType!
   truncateAddress: Boolean!
   truncateUser: Boolean!
@@ -54,12 +64,32 @@ type Mutation {
   updateUser(data: UpdateUserInput!): User!
 }
 
+type Place {
+  active: Boolean!
+  archived: Boolean!
+  createdAt: DateTime!
+  distance: Float!
+  id: String!
+  lat: Float!
+  lng: Float!
+  name: String!
+  updatedAt: DateTime!
+}
+
 type Query {
   address(id: String!): Address!
   addresses: [Address!]!
+  place(id: String!): Place!
+  places(data: SearchPlaceInput): [Place!]!
   user(id: String!): User!
   userByEmail(email: String!): User!
   users: [User!]!
+}
+
+input SearchPlaceInput {
+  lat: String!
+  lng: String!
+  range: String!
 }
 
 input UpdateAddressInput {
