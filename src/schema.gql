@@ -31,8 +31,8 @@ input CreateAddressInput {
 }
 
 input CreatePlaceInput {
-  lat: String!
-  lng: String!
+  lat: Float!
+  lng: Float!
   name: String!
 }
 
@@ -87,9 +87,9 @@ type Query {
 }
 
 input SearchPlaceInput {
-  lat: String!
-  lng: String!
-  range: String!
+  lat: Float!
+  lng: Float!
+  range: Float!
 }
 
 input UpdateAddressInput {

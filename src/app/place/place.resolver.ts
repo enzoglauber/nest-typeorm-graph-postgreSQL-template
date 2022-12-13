@@ -62,7 +62,7 @@ export class PlaceResolver {
     const data = [
       {name: "Bjelisi", lat: 42.10083, lng: 19.10417},
       {name: "Topolica", lat: 42.09833, lng: 19.09417},
-      {name: "Bar", lat: 42.0937, lng:19.09841},
+      {name: "Bar", lat: 42.0937, lng: 19.09841},
       {name: "King Nikola's Palace", lat: 42.10062, lng: 19.09129},
       {name: "Princess", lat: 42.10158, lng: 19.09132},
       {name: "Bar Port", lat: 42.09701, lng: 19.09132},

@@ -10,9 +10,9 @@ export class CreatePlaceInput {
 
   @IsNotEmpty()
   @IsLatitude()
-  lat: string;
+  lat: number;
 
   @IsNotEmpty()
   @IsLongitude()
-  lng: string;
+  lng: number;
 }

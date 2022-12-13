@@ -13,10 +13,10 @@ export class UpdatePlaceInput extends BaseInput {
   @IsOptional()
   @IsLatitude()
   @IsNotEmpty()
-  lat: string;
+  lat: number;
 
   @IsOptional()
   @IsLongitude()
   @IsNotEmpty()
-  lng: string;
+  lng: number;
 }

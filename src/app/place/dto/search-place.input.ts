@@ -6,13 +6,13 @@ import { IsLatitude, IsLongitude, IsNotEmpty, IsString } from 'class-validator';
 export class  SearchPlaceInput {
   @IsNotEmpty()
   @IsString()
-  range: string;
+  range: number;
 
   @IsNotEmpty()
   @IsLatitude()
-  lat: string;
+  lat: number;
 
   @IsNotEmpty()
   @IsLongitude()
-  lng: string;
+  lng: number;
 }

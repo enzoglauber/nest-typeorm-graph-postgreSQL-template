@@ -16,8 +16,7 @@ export class PlaceService {
   ) {}
 
   async insert(data: CreatePlaceInput | UpdatePlaceInput): Promise<Place> {
-    const formatted = this.casting(data);
-    return this.placeRepository.save({...data, ...formatted});
+    return this.placeRepository.save({...data});
   }
 
   async create(data: DeepPartial<Place>[]): Promise<Place[]> {
@@ -40,8 +39,7 @@ export class PlaceService {
 
   async update(data: UpdatePlaceInput): Promise<Place> {
     const entity = await this.findOne(data.id);
-    const formatted = this.casting(data);
-    return this.placeRepository.save({ ...entity, ...formatted });
+    return this.placeRepository.save({ ...entity, ...data });
   }
 
   async remove(id: string): Promise<void> {
@@ -57,7 +55,7 @@ export class PlaceService {
     return true;
   }
 
-  async search(data: SearchPlaceInput) {
+  async search({lat, lng, range}: SearchPlaceInput) {
     const sql = `
       SELECT
         plc.id AS id,
@@ -70,19 +68,6 @@ export class PlaceService {
       ORDER BY distance
     `;
 
-    const lng = parseFloat(data.lng);
-    const lat = parseFloat(data.lat);
-    const range = parseInt(data.range) * 1000;
-
-    return this.connection.query(sql, [lat, lng, range]);
-  }
-
-  private casting = (data: UpdatePlaceInput | CreatePlaceInput) => {
-    const formatted = {
-      lat: parseFloat(data.lat),
-      lng: parseFloat(data.lng)
-    }
-
-    return formatted
+    return this.connection.query(sql, [lat, lng, (range * 1000)]);
   }
 }
