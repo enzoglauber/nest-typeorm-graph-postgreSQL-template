@@ -23,7 +23,7 @@ export class AddressService {
   }
 
   async findOne(id: string): Promise<Address> {
-    const entity = await this.addressRepository.findOne(id);
+    const entity = await this.addressRepository.findOne({where: {id}});
     if (!entity) {
       throw new NotFoundException('Address not found');
     }
@@ -36,8 +36,7 @@ export class AddressService {
   }
 
   async remove(id: string): Promise<void> {
-    const entity = await this.findOne(id);
-    const deleted = await this.addressRepository.delete(entity);
+    const deleted = await this.addressRepository.delete({id});
     if (!deleted) {
       throw new InternalServerErrorException();
     }

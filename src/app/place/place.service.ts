@@ -30,7 +30,7 @@ export class PlaceService {
   }
 
   async findOne(id: string): Promise<Place> {
-    const entity = await this.placeRepository.findOne(id);
+    const entity = await this.placeRepository.findOne({where: {id}});
     if (!entity) {
       throw new NotFoundException('Place not found');
     }
@@ -43,8 +43,7 @@ export class PlaceService {
   }
 
   async remove(id: string): Promise<void> {
-    const entity = await this.findOne(id);
-    const deleted = await this.placeRepository.delete(entity);
+    const deleted = await this.placeRepository.delete({id});
     if (!deleted) {
       throw new InternalServerErrorException();
     }

@@ -61,10 +61,12 @@ touch src/auth/auth.input.ts
 nest g mo app/place
 nest g r app/place
 nest g s app/place
+
 # touch
 touch src/auth/place.entity.ts
-touch src/dto/create-place.input.ts
-touch src/dto/update-place.input.ts
+touch src/app/place/dto/create-place.input.ts
+touch src/app/place/dto/update-place.input.ts
+touch src/app/place/dto/search-place.input.ts
 ```
 
 ## PostgreSQL

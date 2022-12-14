@@ -17,7 +17,7 @@ export class UserService {
   ) {}
 
   async createUser(user: CreateUserInput): Promise<User> {
-    if (user.address) {      
+    if (user.address) {
       const address = await this.addressService.create(user.address);
       user.address = address;
     }
@@ -25,7 +25,7 @@ export class UserService {
   }
 
   async getUserById(id: string): Promise<User> {
-    const user = await this.userRepository.findOne(id);
+    const user = await this.userRepository.findOne({where: {id}});
     if (!user) {
       throw new NotFoundException('User not found');
     }
@@ -58,8 +58,7 @@ export class UserService {
   }
 
   async deleteUser(id: string): Promise<void> {
-    const user = await this.getUserById(id);
-    const userDeleted = await this.userRepository.delete(user);
+    const userDeleted = await this.userRepository.delete({id});
     if (!userDeleted) {
       throw new InternalServerErrorException();
     }
@@ -67,7 +66,9 @@ export class UserService {
 
   async findByAddress(id: string): Promise<User>{
     return this.userRepository.findOne({
-      address: {id}
+      where: {
+        address: {id}
+      }
     });
 
     // return this.userRepository
