@@ -3,7 +3,7 @@ version: '3.7'
 services:
   pgsql:
     container_name: pgsql
-    image: postgres:9.6-alpine
+    image: postgres:latest
     restart: always
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -13,7 +13,7 @@ services:
       - 5432:5432
     volumes:
       - api_db_data:/var/lib/postgresql/data
-  
+
   adminer:
     image: adminer
     restart: always

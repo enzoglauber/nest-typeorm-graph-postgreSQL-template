@@ -73,12 +73,21 @@ touch src/app/place/dto/search-place.input.ts
 
 ```bash
 # start
+sudo apt update
+sudo apt install docker.io
+
 sudo service docker start
+
+ systemctl start docker
+
+
 # up
 docker-compose up -d
+
+npm run typeorm migration:run -- -d ./src/config/data-source.ts
 # exec
 sh start-db.sh
-docker-compose run postgres bash
+docker-compose run pgsql bash
 psql --host=postgres --username=admin --dbname=root
 psql --host=localhost --username=admin --dbname=root
 
@@ -127,7 +136,7 @@ $ npm run test:cov
 
 ```bash
 # run all migrations
-npm run migrate:run
+npm run typeorm migration:run -- -d ./src/config/data-source.ts
 
 # create migrate
 npm run migrate:create CreateUser
